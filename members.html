@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Callisto Members</title>
+    
+    <link rel="icon" type="image/png" href="https://media.discordapp.net/attachments/1378775349596520458/1450137522096177275/Beige_Black_Minimal_Simple_Modern_Handwritten_Graffiti_Typographic_Arts_and_Design_Logo_1.png?ex=696a4fcf&is=6968fe4f&hm=d88b07de26deb815509c903275eb84bfa810d13d2c9686ed7bd43bb4cdb95c41&=&format=webp&quality=lossless">
+    
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
             margin: 0;
-            background-color: #0d1117; /* สีพื้นหลังเข้มตามรูป */
+            background-color: #0d1117; 
             color: white;
             font-family: 'Kanit', sans-serif;
             display: flex;
@@ -18,7 +21,7 @@
         }
 
         .member-card {
-            background: #161b22; /* สีกล่องสมาชิก */
+            background: #161b22; 
             width: 100%;
             max-width: 500px;
             border-radius: 15px;
@@ -33,7 +36,6 @@
             letter-spacing: 2px;
         }
 
-        /* ส่วนช่องค้นหาที่พัฒนาให้ใช้งานได้จริง */
         .search-container {
             position: relative;
             margin-bottom: 20px;
@@ -83,7 +85,6 @@
             transition: 0.3s;
         }
 
-        /* ซ่อนสมาชิกที่ไม่ตรงกับการค้นหา */
         .member-item.hidden {
             display: none;
         }
@@ -220,6 +221,19 @@
                 </div>
                 <a href="https://www.facebook.com/profile.php?id=100037029700152" target="_blank"><i class="fab fa-facebook fb-icon"></i></a>
             </div>
+
+            <div class="member-item">
+                <div class="info">
+                    <div class="avatar">
+                        <img src="https://media.discordapp.net/attachments/1378775349596520458/1450137522096177275/Beige_Black_Minimal_Simple_Modern_Handwritten_Graffiti_Typographic_Arts_and_Design_Logo_1.png?ex=696a4fcf&is=6968fe4f&hm=d88b07de26deb815509c903275eb84bfa810d13d2c9686ed7bd43bb4cdb95c41&=&format=webp&quality=lossless" alt="Hugo">
+                    </div>
+                    <div class="name-box">
+                        <span class="name">Hugo Callisto</span>
+                        <a href="https://www.facebook.com/hugo.narakmak" target="_blank" class="fb-link">facebook.com/hugo</a>
+                    </div>
+                </div>
+                <a href="https://www.facebook.com/hugo.narakmak" target="_blank"><i class="fab fa-facebook fb-icon"></i></a>
+            </div>
         </div>
 
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> กลับหน้าหลัก</a>
@@ -227,18 +241,15 @@
 
     <script>
         function filterMembers() {
-            // ดึงค่าจากช่องค้นหาและเปลี่ยนเป็นตัวพิมพ์เล็ก
             let input = document.getElementById('searchInput');
             let filter = input.value.toLowerCase();
             let memberList = document.getElementById('memberList');
             let items = memberList.getElementsByClassName('member-item');
 
-            // วนลูปเช็คสมาชิกแต่ละคน
             for (let i = 0; i < items.length; i++) {
                 let nameSpan = items[i].getElementsByClassName('name')[0];
                 let txtValue = nameSpan.textContent || nameSpan.innerText;
 
-                // ถ้าชื่อตรงกับที่พิมพ์ให้แสดง ถ้าไม่ตรงให้ซ่อน
                 if (txtValue.toLowerCase().indexOf(filter) > -1) {
                     items[i].classList.remove('hidden');
                 } else {
@@ -247,6 +258,5 @@
             }
         }
     </script>
-
 </body>
 </html>
