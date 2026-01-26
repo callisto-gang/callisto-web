@@ -3,268 +3,373 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Callisto Members</title>
+    <title>Callisto Gang | Official Roster</title>
     
-    <link rel="icon" type="image/png" href="https://media.discordapp.net/attachments/1378775349596520458/1450137522096177275/Beige_Black_Minimal_Simple_Modern_Handwritten_Graffiti_Typographic_Arts_and_Design_Logo_1.png?ex=696a4fcf&is=6968fe4f&hm=d88b07de26deb815509c903275eb84bfa810d13d2c9686ed7bd43bb4cdb95c41&=&format=webp&quality=lossless">
+    <link rel="icon" type="image/png" href="https://media.discordapp.net/attachments/1378775349596520458/1450137522096177275/Beige_Black_Minimal_Simple_Modern_Handwritten_Graffiti_Typographic_Arts_and_Design_Logo_1.png">
     
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Kanit:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
+        :root {
+            --primary-blue: #58a6ff;
+            --accent-glow: rgba(88, 166, 255, 0.4);
+            --card-bg: rgba(22, 27, 34, 0.4);
+            --body-bg: #0d1117;
+        }
+
         body {
             margin: 0;
-            background-color: #0d1117; 
+            background: radial-gradient(circle at 50% -20%, #1c2128 0%, var(--body-bg) 100%);
             color: white;
             font-family: 'Kanit', sans-serif;
-            display: flex;
-            justify-content: center;
-            padding: 40px 20px;
+            min-height: 100vh;
+            padding: 80px 20px;
+            overflow-x: hidden;
         }
 
-        .member-card {
-            background: #161b22; 
-            width: 100%;
-            max-width: 500px;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .header {
+        /* Header */
+        .header-section {
             text-align: center;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease-out;
         }
 
-        .search-container {
+        .header-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            background: linear-gradient(to bottom, #ffffff 40%, #58a6ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+            filter: drop-shadow(0 0 15px rgba(88, 166, 255, 0.3));
+        }
+
+        .subtitle {
+            color: var(--primary-blue);
+            letter-spacing: 6px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-top: 15px;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+
+        /* Search Box */
+        .search-wrapper {
             position: relative;
-            margin-bottom: 20px;
+            max-width: 500px;
+            margin: 0 auto 70px;
+            animation: fadeIn 1s ease-in;
         }
 
-        .search-bar-input {
+        .search-input {
             width: 100%;
-            background: #0d1117;
-            border: 1px solid #30363d;
-            padding: 12px 40px 12px 15px;
-            border-radius: 8px;
-            color: #8b949e;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 18px 60px 18px 30px;
+            border-radius: 100px;
+            color: white;
             font-family: 'Kanit', sans-serif;
-            font-size: 0.9rem;
-            box-sizing: border-box;
+            backdrop-filter: blur(20px);
             outline: none;
-            transition: 0.3s;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
 
-        .search-bar-input:focus {
-            border-color: #58a6ff;
-            color: white;
+        .search-input:focus {
+            border-color: var(--primary-blue);
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 0 30px var(--accent-glow), inset 0 0 5px var(--primary-blue);
         }
 
         .search-icon {
             position: absolute;
-            right: 15px;
+            right: 25px;
             top: 50%;
             transform: translateY(-50%);
-            color: #8b949e;
-            pointer-events: none;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
         }
 
-        .member-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+        /* Member Grid */
+        .member-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 35px;
         }
 
-        .member-item {
-            background: #21262d;
-            border-radius: 10px;
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: 0.3s;
+        .member-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+            padding: 50px 25px;
+            text-align: center;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            backdrop-filter: blur(15px);
+            position: relative;
+            animation: cardAppear 0.8s ease-out backwards;
         }
 
-        .member-item.hidden {
-            display: none;
+        /* Staggered Animation Delay */
+        .member-card:nth-child(1) { animation-delay: 0.1s; }
+        .member-card:nth-child(2) { animation-delay: 0.2s; }
+        .member-card:nth-child(3) { animation-delay: 0.3s; }
+        .member-card:nth-child(4) { animation-delay: 0.4s; }
+        .member-card:nth-child(5) { animation-delay: 0.5s; }
+        .member-card:nth-child(n+6) { animation-delay: 0.6s; }
+
+        .member-card:hover {
+            transform: translateY(-20px) scale(1.02);
+            border-color: var(--primary-blue);
+            background: rgba(88, 166, 255, 0.05);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 30px rgba(88, 166, 255, 0.2);
         }
 
-        .member-item:hover {
-            background: #30363d;
-            transform: scale(1.02);
+        .member-card.hidden { display: none; }
+
+        /* Avatar Styling */
+        .avatar-box {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 30px;
+            position: relative;
         }
 
-        .info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .avatar {
-            width: 45px;
-            height: 45px;
-            background: #30363d;
+        .avatar-box::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden; 
-            border: 2px solid rgba(255,255,255,0.1);
+            background: linear-gradient(45deg, transparent, var(--primary-blue), transparent);
+            animation: rotate 4s linear infinite;
+            opacity: 0;
+            transition: 0.5s;
         }
 
-        .avatar img {
+        .member-card:hover .avatar-box::after { opacity: 1; }
+
+        .avatar-img {
             width: 100%;
             height: 100%;
+            border-radius: 50%;
             object-fit: cover;
+            border: 4px solid #1c2128;
+            position: relative;
+            z-index: 2;
+            transition: 0.5s;
+            filter: grayscale(20%);
         }
 
-        .name-box {
-            display: flex;
-            flex-direction: column;
+        .member-card:hover .avatar-img {
+            filter: grayscale(0%);
+            border-color: var(--primary-blue);
+            transform: rotate(-3deg);
         }
 
-        .name { font-weight: 500; font-size: 1rem; }
-        .fb-link { color: #8b949e; font-size: 0.8rem; text-decoration: none; }
-
-        .fb-icon {
-            color: #444; 
-            font-size: 1.5rem;
-            transition: 0.3s;
-        }
-
-        .member-item:hover .fb-icon {
-            color: #1877F2; 
-        }
-
-        .back-btn {
+        .member-name {
             display: block;
-            text-align: center;
-            margin-top: 25px;
-            color: #58a6ff;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* Social Button */
+        .fb-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: #fff;
             text-decoration: none;
+            transition: 0.4s;
+        }
+
+        .fb-btn:hover {
+            background: #1877F2;
+            transform: scale(1.25) rotate(360deg);
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(24, 119, 242, 0.6);
+        }
+
+        /* Footer Navigation */
+        .footer-nav {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: #8b949e;
             font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 16px 40px;
+            border-radius: 100px;
+            transition: 0.4s;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link:hover {
+            color: white;
+            border-color: var(--primary-blue);
+            background: rgba(88, 166, 255, 0.1);
+            transform: translateX(-5px);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .member-grid { grid-template-columns: 1fr; }
+            .header-title { letter-spacing: 6px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="member-card">
-        <div class="header">Callisto Members</div>
+    <div class="container">
+        <header class="header-section">
+            <h1 class="header-title">CALLISTO GANG</h1>
+            <div class="subtitle">The Official Roster of Callisto Collective</div>
+        </header>
         
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-bar-input" placeholder="ค้นหาชื่อสมาชิก..." onkeyup="filterMembers()">
+        <div class="search-wrapper">
+            <input type="text" id="searchInput" class="search-input" placeholder="ค้นหาสมาชิกในแก๊ง..." onkeyup="filterMembers()">
             <i class="fas fa-search search-icon"></i>
         </div>
 
-        <div class="member-list" id="memberList">
-            <div class="member-item">
-                <div class="info">
-                    <div class="avatar">
-                        <img src="https://scontent.fkkc2-1.fna.fbcdn.net/v/t39.30808-6/557287087_783720914281506_9182930619035941888_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Nm5WwXBqld8Q7kNvwFGB3ft&_nc_oc=Adm7Wt45yuBf-syejRdzVEZTJvdnPqWYWsxBUjrNxSYubHUuMaCRQBRxK11dXDRzjyGtZqHOuoD5kpSCIlCyceiO&_nc_zt=23&_nc_ht=scontent.fkkc2-1.fna&_nc_gid=Ivzxc8ghkixP9-WXQyYH3A&oh=00_AfrDFRaUOUIpdGkpOnDvo0BuQvWvLRT7XXslON44FglHRQ&oe=696F02CE" alt="Boss">
-                    </div>
-                    <div class="name-box">
-                        <span class="name">Theboss Callisto</span>
-                        <a href="https://www.facebook.com/Sataeryn" target="_blank" class="fb-link">facebook.com/boss</a>
-                    </div>
+        <div class="member-grid" id="memberList">
+            
+            <script>
+                const groupLogo = "https://media.discordapp.net/attachments/1378775349596520458/1450137522096177275/Beige_Black_Minimal_Simple_Modern_Handwritten_Graffiti_Typographic_Arts_and_Design_Logo_1.png";
+                function imgError(image) {
+                    image.onerror = "";
+                    image.src = groupLogo;
+                    image.style.filter = "none";
+                    return true;
+                }
+            </script>
+
+            <div class="member-card">
+                <div class="avatar-box">
+                    <img src="https://media.discordapp.net/attachments/1378775349596520458/1450137522096177275/Beige_Black_Minimal_Simple_Modern_Handwritten_Graffiti_Typographic_Arts_and_Design_Logo_1.png?ex=6978278f&is=6976d60f&hm=c8e40b3a9dfe90d75e27c5507b453889e63f1170ae87a32c95d4fc3cf31f4e7b&=&format=webp&quality=lossless" class="avatar-img" onerror="imgError(this)">
                 </div>
-                <a href="https://www.facebook.com/Sataeryn" target="_blank"><i class="fab fa-facebook fb-icon"></i></a>
+                <span class="member-name">Theboss Callisto</span>
+                <a href="https://www.facebook.com/Sataeryn" target="_blank" class="fb-btn">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
             </div>
 
-            <div class="member-item">
-                <div class="info">
-                    <div class="avatar">
-                        <img src="https://scontent.fkkc2-1.fna.fbcdn.net/v/t39.30808-6/612076411_905587395752647_4545039488768023427_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=SI_C6rnCGKMQ7kNvwGr7Mr2&_nc_oc=AdlPf3Veuk6oDOQWBr02tTMfpeTKe3lmh_4JQ_8e-8QqaRAys5dHeaAE_3JbBgRqiYy4ULfjaZEUMHDdI6gbgitX&_nc_zt=23&_nc_ht=scontent.fkkc2-1.fna&_nc_gid=3_k13JSJf-pyw54WFBbxuw&oh=00_AfqM88VstsGiyggSAzStQ_MIhkelLMZg6gsgYpiIQ9Y7wg&oe=696F2766" alt="JHope">
-                    </div>
-                    <div class="name-box">
-                        <span class="name">JHope Callisto</span>
-                        <a href="https://www.facebook.com/jack.delta.783672" target="_blank" class="fb-link">facebook.com/jhope</a>
-                    </div>
+            <div class="member-card">
+                <div class="avatar-box">
+                    <img src="https://media.discordapp.net/attachments/1378775349596520458/1450137522096177275/Beige_Black_Minimal_Simple_Modern_Handwritten_Graffiti_Typographic_Arts_and_Design_Logo_1.png?ex=6978278f&is=6976d60f&hm=c8e40b3a9dfe90d75e27c5507b453889e63f1170ae87a32c95d4fc3cf31f4e7b&=&format=webp&quality=lossless" class="avatar-img" onerror="imgError(this)">
                 </div>
-                <a href="https://www.facebook.com/jack.delta.783672" target="_blank"><i class="fab fa-facebook fb-icon"></i></a>
+                <span class="member-name">JHope Callisto</span>
+                <a href="https://www.facebook.com/jack.delta.783672" target="_blank" class="fb-btn">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
             </div>
 
-            <div class="member-item">
-                <div class="info">
-                    <div class="avatar">
-                        <img src="https://scontent.fkkc2-1.fna.fbcdn.net/v/t39.30808-6/531913338_1061609309507158_2205164396080862361_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=l8fLy7djAuoQ7kNvwG_DotT&_nc_oc=Admta8X8s-uadN4d0j_5FQFHE8llbMXOZez9arkHprwTiXYPG7O96r32AtZWiny2op1nGd4bleybll4xIjokOtfw&_nc_zt=23&_nc_ht=scontent.fkkc2-1.fna&_nc_gid=qz39C1cdsk2K3WU3PDwmxA&oh=00_AfqOaFTrcU4DwAXyXZ7U9IA-5tnMpdP9NFtP1x1AbXOjNQ&oe=696F0B5F" alt="Vistra">
-                    </div>
-                    <div class="name-box">
-                        <span class="name">MaRishvelika Callisto</span>
-                        <a href="https://www.facebook.com/profile.php?id=100069742964435" target="_blank" class="fb-link">facebook.com/marishvelika</a>
-                    </div>
+            <div class="member-card">
+                <div class="avatar-box">
+                    <img src="https://media.discordapp.net/attachments/1378775349596520458/1450137522096177275/Beige_Black_Minimal_Simple_Modern_Handwritten_Graffiti_Typographic_Arts_and_Design_Logo_1.png?ex=6978278f&is=6976d60f&hm=c8e40b3a9dfe90d75e27c5507b453889e63f1170ae87a32c95d4fc3cf31f4e7b&=&format=webp&quality=lossless" class="avatar-img" onerror="imgError(this)">
                 </div>
-                <a href="https://www.facebook.com/profile.php?id=100069742964435" target="_blank"><i class="fab fa-facebook fb-icon"></i></a>
+                <span class="member-name">MaRishvelika Callisto</span>
+                <a href="https://www.facebook.com/profile.php?id=100069742964435" target="_blank" class="fb-btn">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
             </div>
 
-            <div class="member-item">
-                <div class="info">
-                    <div class="avatar">
-                        <img src="https://i.pinimg.com/originals/1c/43/4d/1c434d1640f9572e2ac7be5c6bac9348.jpg" alt="Owen">
-                    </div>
-                    <div class="name-box">
-                        <span class="name">Beta Callisto</span>
-                        <a href="https://www.facebook.com/suntarxillusion" target="_blank" class="fb-link">facebook.com/beta</a>
-                    </div>
+            <div class="member-card">
+                <div class="avatar-box">
+                    <img src="https://media.discordapp.net/attachments/1378775349596520458/1450137522096177275/Beige_Black_Minimal_Simple_Modern_Handwritten_Graffiti_Typographic_Arts_and_Design_Logo_1.png?ex=6978278f&is=6976d60f&hm=c8e40b3a9dfe90d75e27c5507b453889e63f1170ae87a32c95d4fc3cf31f4e7b&=&format=webp&quality=lossless" class="avatar-img" onerror="imgError(this)">
                 </div>
-                <a href="https://www.facebook.com/suntarxillusion" target="_blank"><i class="fab fa-facebook fb-icon"></i></a>
+                <span class="member-name">Beta Callisto</span>
+                <a href="https://www.facebook.com/svj1lmq" target="_blank" class="fb-btn">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
             </div>
 
-            <div class="member-item">
-                <div class="info">
-                    <div class="avatar">
-                        <img src="https://scontent.fkkc2-1.fna.fbcdn.net/v/t39.30808-6/517618976_1413044099939900_8432072746558995909_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=9EK74sNDdn4Q7kNvwELAXDv&_nc_oc=Adkk41g4lpg54LZ0X4mdlYapKqKxeQwhRxcTO_aS5LsEeheFw23sRWZwjV-HToh_Nrl8EUZwFo2z5tkDGFTSIPcC&_nc_zt=23&_nc_ht=scontent.fkkc2-1.fna&_nc_gid=b9f-YkHWFgHNC9rzIFHs0w&oh=00_AfqJbLA_ItXlJtuv6ynxnvaHuiYF9g7mVvUaK_HZbuVxaw&oe=696F0CDA" alt="Kings">
-                    </div>
-                    <div class="name-box">
-                        <span class="name">MFour Callisto</span>
-                        <a href="https://www.facebook.com/profile.php?id=100037029700152" target="_blank" class="fb-link">facebook.com/mfours</a>
-                    </div>
+            <div class="member-card">
+                <div class="avatar-box">
+                    <img src="https://media.discordapp.net/attachments/1378775349596520458/1450137522096177275/Beige_Black_Minimal_Simple_Modern_Handwritten_Graffiti_Typographic_Arts_and_Design_Logo_1.png?ex=6978278f&is=6976d60f&hm=c8e40b3a9dfe90d75e27c5507b453889e63f1170ae87a32c95d4fc3cf31f4e7b&=&format=webp&quality=lossless" class="avatar-img" onerror="imgError(this)">
                 </div>
-                <a href="https://www.facebook.com/profile.php?id=100037029700152" target="_blank"><i class="fab fa-facebook fb-icon"></i></a>
+                <span class="member-name">MFour Callisto</span>
+                <a href="https://www.facebook.com/profile.php?id=100037029700152" target="_blank" class="fb-btn">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
             </div>
 
-            <div class="member-item">
-                <div class="info">
-                    <div class="avatar">
-                        <img src="https://i.pinimg.com/originals/1c/43/4d/1c434d1640f9572e2ac7be5c6bac9348.jpg" alt="Hugo">
-                    </div>
-                    <div class="name-box">
-                        <span class="name">Hugo Callisto</span>
-                        <a href="https://www.facebook.com/hugo.narakmak" target="_blank" class="fb-link">facebook.com/hugo</a>
-                    </div>
+            <div class="member-card">
+                <div class="avatar-box">
+                    <img src="https://media.discordapp.net/attachments/1378775349596520458/1450137522096177275/Beige_Black_Minimal_Simple_Modern_Handwritten_Graffiti_Typographic_Arts_and_Design_Logo_1.png?ex=6978278f&is=6976d60f&hm=c8e40b3a9dfe90d75e27c5507b453889e63f1170ae87a32c95d4fc3cf31f4e7b&=&format=webp&quality=lossless" class="avatar-img" onerror="imgError(this)">
                 </div>
-                <a href="https://www.facebook.com/hugo.narakmak" target="_blank"><i class="fab fa-facebook fb-icon"></i></a>
+                <span class="member-name">Hugo Callisto</span>
+                <a href="https://www.facebook.com/hugo.narakmak" target="_blank" class="fb-btn">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
             </div>
 
-            <div class="member-item">
-                <div class="info">
-                    <div class="avatar">
-                        <img src="https://scontent.fkkc2-1.fna.fbcdn.net/v/t39.30808-6/600297277_122155353986799329_855755910288660904_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=5RqS7D3yqHQQ7kNvwGiQQ2F&_nc_oc=AdmQIdCbcWxUr0V0QiSQAL75kYF9YoT-7QZuMQa1E9PG55bgqkDTv7Js21xzCNhQNqGZf3b_AE5gwiHe3OdHh9PC&_nc_zt=23&_nc_ht=scontent.fkkc2-1.fna&_nc_gid=abmcK3lmCgJ0xFHiiInUnQ&oh=00_AfolcUIE_bufOp9A2EJKmX1aQi0j2GSa3D-h3lJ5Ioxm5g&oe=696F01FE" alt="New Member">
-                    </div>
-                    <div class="name-box">
-                        <span class="name">Zino Callisto</span>
-                        <a href="https://www.facebook.com/30fromdowntown" target="_blank" class="fb-link">facebook.com/zino</a>
-                    </div>
+            <div class="member-card">
+                <div class="avatar-box">
+                    <img src="https://media.discordapp.net/attachments/1378775349596520458/1450137522096177275/Beige_Black_Minimal_Simple_Modern_Handwritten_Graffiti_Typographic_Arts_and_Design_Logo_1.png?ex=6978278f&is=6976d60f&hm=c8e40b3a9dfe90d75e27c5507b453889e63f1170ae87a32c95d4fc3cf31f4e7b&=&format=webp&quality=lossless" class="avatar-img" onerror="imgError(this)">
                 </div>
-                <a href="https://www.facebook.com/30fromdowntown" target="_blank"><i class="fab fa-facebook fb-icon"></i></a>
+                <span class="member-name">Zino Callisto</span>
+                <a href="https://www.facebook.com/30fromdowntown" target="_blank" class="fb-btn">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
             </div>
 
         </div>
 
-        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> กลับหน้าหลัก</a>
+        <div class="footer-nav">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-chevron-left"></i> BACK TO HQ
+            </a>
+        </div>
     </div>
 
     <script>
         function filterMembers() {
             let input = document.getElementById('searchInput');
             let filter = input.value.toLowerCase();
-            let memberList = document.getElementById('memberList');
-            let items = memberList.getElementsByClassName('member-item');
+            let items = document.getElementsByClassName('member-card');
 
             for (let i = 0; i < items.length; i++) {
-                let nameSpan = items[i].getElementsByClassName('name')[0];
-                let txtValue = nameSpan.textContent || nameSpan.innerText;
-
-                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                let name = items[i].getElementsByClassName('member-name')[0].innerText;
+                if (name.toLowerCase().indexOf(filter) > -1) {
                     items[i].classList.remove('hidden');
                 } else {
                     items[i].classList.add('hidden');
