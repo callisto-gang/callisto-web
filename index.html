@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CALLISTO GANG - Premium Look</title>
+    <title>CALLISTO GANG | HQ TERMINAL</title>
     
-    <link rel="icon" type="image/png" href="https://media.discordapp.net/attachments/1378775349596520458/1450137522096177275/Beige_Black_Minimal_Simple_Modern_Handwritten_Graffiti_Typographic_Arts_and_Design_Logo_1.png?ex=696a4fcf&is=6968fe4f&hm=d88b07de26deb815509c903275eb84bfa810d13d2c9686ed7bd43bb4cdb95c41&=&format=webp&quality=lossless">
+    <link rel="icon" type="image/png" href="https://media.discordapp.net/attachments/1378775349596520458/1450137522096177275/Beige_Black_Minimal_Simple_Modern_Handwritten_Graffiti_Typographic_Arts_and_Design_Logo_1.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Kanit:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
+        :root {
+            --primary-blue: #58a6ff;
+            --accent-glow: rgba(88, 166, 255, 0.4);
+            --bg-dark: #05070a;
+        }
+
         * {
             box-sizing: border-box;
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -16,9 +24,7 @@
 
         body {
             margin: 0;
-            padding: 0;
-            /* พื้นหลังไล่สีแบบ Deep Space */
-            background: radial-gradient(circle at top, #1a1a2e 0%, #000000 100%);
+            background: radial-gradient(circle at center, #0d1117 0%, var(--bg-dark) 100%);
             color: white;
             font-family: 'Kanit', sans-serif;
             display: flex;
@@ -26,116 +32,194 @@
             align-items: center;
             min-height: 100vh;
             overflow: hidden;
+            position: relative;
         }
 
-        /* เพิ่มแสงสะท้อนเบาๆ ด้านบน */
-        body::before {
-            content: '';
+        /* เอฟเฟกต์ Scanline แบบหน้าจอคอมพิวเตอร์ล้ำๆ */
+        body::after {
+            content: " ";
             position: absolute;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
-            opacity: 0.1;
-            z-index: -1;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            z-index: 10;
+            pointer-events: none;
         }
 
         .container {
             text-align: center;
             width: 90%;
-            max-width: 600px;
-            padding: 20px;
+            max-width: 800px;
+            z-index: 2;
+            padding: 40px;
+            border: 1px solid rgba(88, 166, 255, 0.1);
+            background: rgba(13, 17, 23, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
         }
 
-        /* หัวข้อด้านบนสุด */
+        .header-section {
+            margin-bottom: 60px;
+            animation: fadeInDown 1s ease-out;
+        }
+
         .header-title {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
-            font-size: clamp(2rem, 8vw, 3.5rem); 
-            letter-spacing: 15px;
+            font-size: clamp(2.5rem, 10vw, 4.5rem); 
+            letter-spacing: 12px;
             text-transform: uppercase;
-            margin: 0 0 60px 0;
-            /* ไล่เฉดสีเงิน Chrome */
-            background: linear-gradient(to bottom, #ffffff 40%, #888888 100%);
+            margin: 0;
+            background: linear-gradient(to bottom, #ffffff 40%, var(--primary-blue) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 25px rgba(255,255,255,0.2));
-            animation: fadeInDown 1.2s ease-out;
+            filter: drop-shadow(0 0 20px rgba(88, 166, 255, 0.4));
         }
 
-        /* ปุ่มหลักสไตล์ Glassmorphism */
-        .btn-main {
-            display: inline-block;
-            width: 100%;
-            max-width: 350px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 20px 40px;
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
+        .status-bar {
+            font-size: 0.75rem;
+            color: var(--primary-blue);
             text-transform: uppercase;
-            letter-spacing: 6px;
-            font-weight: 500;
-            border-radius: 12px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            letter-spacing: 4px;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        .menu-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* สไตล์ปุ่มแบบ Cyber Dashboard */
+        .btn-nav {
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(88, 166, 255, 0.2);
+            padding: 22px 35px;
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
             overflow: hidden;
-            animation: fadeInUp 1.2s ease-out 0.3s backwards;
+            animation: fadeInUp 1s ease-out backwards;
         }
 
-        /* เอฟเฟกต์แสงเงาตอนเมาส์ชี้ */
-        .btn-main:hover {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 15px rgba(255,255,255,0.1);
-            color: #ffffff;
-            letter-spacing: 8px;
-        }
-
-        /* แสงวิ่งผ่านปุ่ม */
-        .btn-main::after {
+        .btn-nav::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 20%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: rotate(30deg);
-            transition: 0.8s;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--primary-blue);
+            box-shadow: 0 0 15px var(--primary-blue);
+            transition: 0.3s;
         }
 
-        .btn-main:hover::after {
-            left: 120%;
+        .btn-nav:hover {
+            background: rgba(88, 166, 255, 0.1);
+            border-color: var(--primary-blue);
+            transform: scale(1.05) translateX(10px);
+            box-shadow: -10px 0 30px rgba(88, 166, 255, 0.2);
         }
 
-        /* Animation */
+        .btn-nav:hover::before {
+            width: 8px;
+        }
+
+        .btn-text {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .main-label {
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .sub-label {
+            font-size: 0.7rem;
+            color: var(--primary-blue);
+            margin-top: 4px;
+            opacity: 0.7;
+        }
+
+        .nav-icon {
+            font-size: 1.5rem;
+            opacity: 0.5;
+        }
+
+        .btn-nav:hover .nav-icon {
+            opacity: 1;
+            transform: translateX(5px);
+            color: var(--primary-blue);
+        }
+
+        /* UI Decorative Elements */
+        .corner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary-blue);
+            opacity: 0.5;
+        }
+        .top-left { top: 20px; left: 20px; border-right: none; border-bottom: none; }
+        .bottom-right { bottom: 20px; right: 20px; border-left: none; border-top: none; }
+
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
+            from { opacity: 0; transform: translateY(-40px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Responsive สำหรับมือถือ */
         @media (max-width: 480px) {
-            .header-title { letter-spacing: 8px; margin-bottom: 40px; }
-            .btn-main { padding: 16px; font-size: 0.9rem; letter-spacing: 4px; }
+            .container { padding: 30px 20px; border: none; background: transparent; }
+            .header-title { letter-spacing: 6px; }
+            .btn-nav { padding: 18px 25px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1 class="header-title">CALLISTO GANG</h1>
+    <div class="corner top-left"></div>
+    <div class="corner bottom-right"></div>
 
-       <div class="menu-box">
-            <a href="members.html" class="btn-main">MEMBER CALLISTO</a>
+    <div class="container">
+        <header class="header-section">
+            <h1 class="header-title">CALLISTO</h1>
+            <div class="status-bar">
+                <i class="fas fa-circle" style="font-size: 8px; margin-right: 5px;"></i> 
+                CALLISTO 2026
+            </div>
+        </header>
+
+        <div class="menu-grid">
+            <a href="members.html" class="btn-nav" style="animation-delay: 0.2s;">
+                <div class="btn-text">
+                    <span class="main-label">GANG ROSTER</span>
+                    <span class="sub-label">ดูรายชื่อสมาชิกและข้อมูลการติดต่อ</span>
+                </div>
+                <i class="fas fa-users nav-icon"></i>
+            </a>
+
+           
+                
+            </a>
         </div>
     </div>
 
