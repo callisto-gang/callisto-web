@@ -14,13 +14,19 @@
         :root {
             --primary-blue: #58a6ff;
             --accent-glow: rgba(88, 166, 255, 0.4);
-            --card-bg: rgba(22, 27, 34, 0.4);
+            --card-bg: rgba(22, 27, 34, 0.5); /* ปรับให้โปร่งแสงเล็กน้อยเพื่อโชว์พื้นหลัง */
             --body-bg: #0d1117;
         }
 
         body {
             margin: 0;
-            background: radial-gradient(circle at 50% -20%, #1c2128 0%, var(--body-bg) 100%);
+            /* เพิ่มพื้นหลังบรรทัดนี้ */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('https://media.discordapp.net/attachments/1140155913341239297/1465387690072736056/GTA5-2025-12-02-21-53-12.png?ex=6978ec22&is=69779aa2&hm=213f02838210e656ac0c160e8974588b18b6b536e8d59af0a31886c161d13c73&=&format=webp&quality=lossless&width=968&height=968');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            
             color: white;
             font-family: 'Kanit', sans-serif;
             min-height: 100vh;
@@ -31,6 +37,8 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         /* Header */
@@ -130,7 +138,7 @@
         .member-card:hover {
             transform: translateY(-20px) scale(1.02);
             border-color: var(--primary-blue);
-            background: rgba(88, 166, 255, 0.05);
+            background: rgba(88, 166, 255, 0.1);
             box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 30px rgba(88, 166, 255, 0.2);
         }
 
@@ -225,6 +233,8 @@
             align-items: center;
             gap: 15px;
             letter-spacing: 2px;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
         }
 
         .back-link:hover {
